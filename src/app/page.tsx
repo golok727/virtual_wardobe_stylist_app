@@ -1,15 +1,23 @@
 'use client'
-import SignOutButton from '@/components/SignOutButton'
+import Hero from '@/components/Hero'
+import NavBar from '@/components/NavBar'
+import Showcase from '@/components/Showcase'
 import { useAuthContext } from '@/context/AuthContext'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Home() {
   const { authUser } = useAuthContext()
+  const router = useRouter()
+  useEffect(() => {
+    if (authUser) router.push('/wardobe')
+  }, [])
   return (
-    <div className="">
-      <h1>Radhey Shyam</h1>
-      {authUser?.email}
+    <div className="min-h-screen relative">
+      <NavBar />
 
-      <SignOutButton />
+      <Hero />
+      <Showcase />
     </div>
   )
 }

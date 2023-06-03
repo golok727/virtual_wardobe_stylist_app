@@ -29,7 +29,7 @@ const Page = () => {
     // auth/user-not-found
     console.log(result)
     console.log('Submit')
-    router.push('/')
+    router.push('/wardobe')
   }
 
   return (
@@ -55,6 +55,7 @@ const Page = () => {
             placeholder="Password"
             className="bg-transparent border-[1px] rounded-md px-3 py-2"
             type="password"
+            autoComplete="current-password"
             name=""
             id="password"
           />

@@ -9,11 +9,13 @@ import {
 import { useEffect, useState } from "react";
 import firebase_app from "@/firebase/config";
 import { FirebaseError } from "firebase/app";
+import { useRouter } from "next/navigation";
 
 const auth = getAuth(firebase_app);
 export default function useFirebaseAuth() {
 	const [authUser, setAuthUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const router = useRouter();
 
 	const clear = () => {
 		setAuthUser(null);
@@ -69,7 +71,7 @@ export default function useFirebaseAuth() {
 		return () => {
 			unsubscribe();
 		};
-	}, [authUser]);
+	}, []);
 
 	return {
 		authUser,
