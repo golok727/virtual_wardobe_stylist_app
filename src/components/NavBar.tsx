@@ -7,8 +7,12 @@ const NavBar = () => {
 	return (
 		<div className="sticky top-0 py-2 px-2 lg:px-0 fade-in fade-delay-1 z-10">
 			<nav className="nav_styles">
-				<div>
-					<h3 className="font-bold text-xl">VWardobe</h3>
+				<div className="h-12">
+					<img
+						src="/app_logo.png"
+						className="object-contain w-full h-full"
+						alt="logo"
+					/>
 				</div>
 
 				<ul className="lg:flex gap-4 ul_items hidden">

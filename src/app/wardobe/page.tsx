@@ -1,18 +1,27 @@
 'use client'
 import Authenticated from '@/components/Authenticated'
+import NewButton from '@/components/NewButton'
 import SignOutButton from '@/components/SignOutButton'
-import { useAuthContext } from '@/context/AuthContext'
+import { AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 const Page = () => {
-  const { authUser } = useAuthContext()
   return (
-    <div>
-      <Authenticated>
-        <h1 className="font-bold">Wardobe</h1>
-        {authUser?.email}
-        <SignOutButton />
-      </Authenticated>
-    </div>
+    <Authenticated>
+      <AnimatePresence>
+        <div className="min-h-screen relative">
+          <h1 className="font-bold">Wardobe</h1>
+          <h3>Your lib</h3>
+          {/* Styles created by the user */}
+          <SignOutButton />
+          <div className="absolute bottom-10 right-10">
+            <Link href={'/editor'}>
+              <NewButton />
+            </Link>
+          </div>
+        </div>
+      </AnimatePresence>
+    </Authenticated>
   )
 }
 export default Page
