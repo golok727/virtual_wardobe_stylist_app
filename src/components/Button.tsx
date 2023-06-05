@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, HTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 const styles = {
 	outline:
 		"py-2 px-4 rounded-full border-[1px] border-zinc-500 font-bold cursor-pointer hover:bg-black hover:text-white transition-colors duration-150",
@@ -18,8 +18,9 @@ const Button: React.FC<ButtonProps> = ({
 	variant = "fill",
 	...props
 }) => {
+	const buttonClassName = `${styles[variant]}`;
 	return (
-		<button className={styles[variant]} {...props}>
+		<button {...props} className={buttonClassName}>
 			{children}
 		</button>
 	);

@@ -1,13 +1,15 @@
-import WardobeEditorCanvas from '@/WardobeEditorCanvas'
+import Controls from '@/Controls'
+import EditorCanvas from '@/EditorCanvas'
+
 import Authenticated from '@/components/Authenticated'
-import Controls from '@/components/Controls'
 import React from 'react'
 
 const Page = () => {
   return (
     <Authenticated>
-      <div className="relative">
-        <WardobeEditorCanvas />
+      <div className="w-full min-h-full overflow-hidden">
+        <EditorCanvas />
+
         <Controls />
       </div>
     </Authenticated>
