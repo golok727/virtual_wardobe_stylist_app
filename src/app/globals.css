@@ -2,72 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-100;
-  }
-  .ul_items {
-    @apply text-blue-600 font-medium;
-  }
-  .nav_links {
-    @apply hover:text-blue-900;
-  }
-  .nav_styles {
-    @apply flex justify-between items-center bg-white bg-opacity-95 backdrop-blur-sm shadow-xl rounded-full max-w-3xl mx-auto lg:py-4 py-2 px-8 border-[1px] hover:border-orange-500 transition-all duration-300;
-  }
-  .hero_blob {
-    @apply grid place-items-center text-5xl text-white font-bold bg-gradient-to-r from-red-600 to-indigo-600 min-w-[10px] aspect-square rounded-full p-7 shadow text-center cursor-pointer hover:scale-105 transition-all duration-200;
-  }
-  .fade-in {
+body {
+  @apply bg-slate-300;
+}
+.ul_items {
+  @apply text-blue-600 font-medium;
+}
+.nav_links {
+  @apply hover:text-blue-900;
+}
+.nav_styles {
+  @apply flex justify-between items-center bg-white bg-opacity-95 backdrop-blur-sm shadow-xl rounded-full max-w-3xl mx-auto lg:py-4 py-2 px-8 border-[1px] hover:border-orange-500 transition-all duration-300;
+}
+.hero_blob {
+  @apply grid place-items-center text-5xl text-white font-bold bg-gradient-to-r from-red-600 to-indigo-600 min-w-[10px] aspect-square rounded-full p-7 shadow text-center cursor-pointer hover:scale-105 transition-all duration-200;
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.fade-in.fade-delay-1 {
+  animation-delay: 0.2s;
+}
+.fade-in.fade-delay-2 {
+  animation-delay: 2s;
+}
+
+/* Scale text hero */
+.scale-text {
+  animation: scale 2s forwards;
+  display: inline-block;
+}
+
+.scale-text.scale-delay-1 {
+  animation-delay: 1s;
+}
+
+.scale-text.scale-delay-2 {
+  animation-delay: 1.5s;
+}
+
+.scale-text.scale-delay-3 {
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn 1s forwards;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  .fade-in.fade-delay-1 {
-    animation-delay: 0.2s;
+@keyframes scale {
+  0% {
+    transform: scale(1);
   }
-  .fade-in.fade-delay-2 {
-    animation-delay: 2s;
+  50% {
+    transform: scale(1.05);
+    color: red;
   }
-
-  /* Scale text hero */
-  .scale-text {
-    animation: scale 2s forwards;
-    display: inline-block;
-  }
-
-  .scale-text.scale-delay-1 {
-    animation-delay: 1s;
-  }
-
-  .scale-text.scale-delay-2 {
-    animation-delay: 1.5s;
-  }
-
-  .scale-text.scale-delay-3 {
-    animation-delay: 2s;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-      color: red;
-    }
-    100% {
-      transform: scale(1);
-      color: inherit;
-    }
+  100% {
+    transform: scale(1);
+    color: inherit;
   }
 }

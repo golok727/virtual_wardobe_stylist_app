@@ -1,25 +1,30 @@
 "use client";
 
-import { Environment, Center, OrbitControls } from "@react-three/drei";
+import { Center, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React from "react";
-import Shirt from "./Shirt";
-import CameraRig from "./CameraRig";
 import BackDrop from "./BackDrop";
+import CameraRig from "./CameraRig";
+import Shirt from "./Shirt";
+import { useSnapshot } from "valtio";
+import state from "@/store";
 
 const EditorCanvas = () => {
+	const snap = useSnapshot(state);
 	return (
-		<div
-			style={{ width: "100%", height: "100%", cursor: "grab" }}
-			className="absolute inset-0"
-		>
+		<div className="absolute inset-0 w-full h-full">
 			<Canvas
 				shadows
 				camera={{ position: [0, 0, 2], fov: 25 }}
 				gl={{ preserveDrawingBuffer: true }}
 				className="w-full max-w-full h-full transition-all ease-in"
 			>
+				{/* Add background image if the transparentBackgroundProperty is false */}
+				{!snap.transparentBackground && (
+					<color attach={"background"} args={[snap.backgroundColor]} />
+				)}
+
 				<ambientLight intensity={0.45} />
+
 				<Environment preset="city" />
 				{/* <OrbitControls enablePan={true} enableRotate={false} /> */}
 				<CameraRig>

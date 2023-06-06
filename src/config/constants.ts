@@ -5,11 +5,18 @@ import {
 	IconJeans,
 	IconShorts,
 	WomansPajamaIcon,
+	EditIcon,
 } from "@/assets";
 
+export const EditorTabNames = {
+	COLOR_PICKER: "COLOR_PICKER",
+	FILE_PICKER: "FILE_PICKER",
+	EDIT: "EDIT",
+};
 export const EditorTabsList = [
-	{ name: "colorpicker", icon: ColorWheelIcon },
-	{ name: "filepicker", icon: FileIcon },
+	{ name: EditorTabNames.COLOR_PICKER, icon: ColorWheelIcon },
+	{ name: EditorTabNames.FILE_PICKER, icon: FileIcon },
+	{ name: EditorTabNames.EDIT, icon: EditIcon },
 ];
 export const EditorClothTypeTabList = [
 	{ name: "shirt", icon: IconShirt },

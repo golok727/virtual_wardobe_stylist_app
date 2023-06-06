@@ -12,25 +12,11 @@ const Controls = () => {
 	const snap = useSnapshot(state);
 	return (
 		<>
-			<div
-				style={{
-					overflow: "hidden",
-					position: "absolute",
-					left: "1rem",
-					top: "50%",
-				}}
-			>
+			<div className="absolute top-1/2 left-2">
 				<EditorTabs />
 			</div>
 
-			<div
-				style={{
-					position: "absolute",
-					bottom: "1em",
-					left: "50%",
-					transform: "translateX(-50%)",
-				}}
-			>
+			<div className="absolute bottom-2 left-1/2 -translate-x-1/2">
 				<ClothTypeTabs />
 			</div>
 
@@ -44,7 +30,7 @@ const Controls = () => {
 					delay: 0.9,
 				}}
 				animate={{ x: 0, scale: 1 }}
-				style={{ position: "absolute", top: "2rem", right: "2rem" }}
+				className="absolute top-3 right-3"
 			>
 				<div className="grid gap-2 text-sm">
 					<Link href={"/wardobe"}>
