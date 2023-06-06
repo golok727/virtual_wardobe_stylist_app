@@ -35,20 +35,16 @@ const Controls = () => {
 				<div className="grid gap-2 text-sm">
 					<Link href={"/wardobe"}>
 						<Button
+							variant="outline"
 							style={{
-								background: snap.color,
-								color: getContrastingColor(snap.color),
+								background: "none",
+								color: getContrastingColor(snap.backgroundColor),
 							}}
 						>
 							Go Back
 						</Button>
 					</Link>
 					<Button>Save</Button>
-					<input
-						type="color"
-						value={state.color}
-						onChange={(ev) => (state.color = ev.target.value)}
-					/>
 				</div>
 			</motion.div>
 		</>

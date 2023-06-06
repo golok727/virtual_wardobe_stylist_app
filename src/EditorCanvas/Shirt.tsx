@@ -10,7 +10,7 @@ const Shirt = () => {
 	const { nodes, materials } = useGLTF("/shirt_baked.glb") as any;
 
 	useFrame((_, delta) => {
-		easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
+		easing.dampC(materials.lambert1.color, state.color, 0.25, delta);
 	});
 
 	const fullTexture = useTexture(snap.fullDecal);

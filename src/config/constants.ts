@@ -18,9 +18,17 @@ export const EditorTabsList = [
 	{ name: EditorTabNames.FILE_PICKER, icon: FileIcon },
 	{ name: EditorTabNames.EDIT, icon: EditIcon },
 ];
+
 export const EditorClothTypeTabList = [
 	{ name: "shirt", icon: IconShirt },
 	{ name: "jeans", icon: IconJeans },
 	{ name: "shorts", icon: IconShorts },
 	{ name: "womans-pajama", icon: WomansPajamaIcon },
+];
+
+export const textureBlendModes: { name: string; type: string }[] = [
+	{ name: "Multiply", type: "MULTIPLY" },
+	{ name: "Add", type: "ADD" },
+	{ name: "Subtract", type: "SUBTRACT" },
+	{ name: "Screen", type: "SCREEN" },
 ];

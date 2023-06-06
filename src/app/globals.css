@@ -47,6 +47,17 @@ body {
   animation-delay: 2s;
 }
 
+.color-input {
+  @apply appearance-none w-7 h-7  border border-gray-300 !bg-transparent border-none;
+}
+
+.custom-color-input::-webkit-color-swatch-wrapper {
+  @apply p-0;
+}
+
+.custom-color-input::-webkit-color-swatch {
+  @apply rounded-full;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

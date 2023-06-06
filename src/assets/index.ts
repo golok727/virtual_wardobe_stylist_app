@@ -5,6 +5,9 @@ import IconShorts from "./icons-shorts.png";
 import IconJeans from "./icons-jeans.png";
 import WomansPajamaIcon from "./icons-women-pajama.png";
 import EditIcon from "./icons-edit.png";
+import StickerIcon from "./icons-sticker.png";
+import DesignIcon from "./icons-design.png";
+
 export {
 	EditIcon,
 	FileIcon,
@@ -13,4 +16,6 @@ export {
 	IconJeans,
 	IconShorts,
 	WomansPajamaIcon,
+	StickerIcon,
+	DesignIcon,
 };

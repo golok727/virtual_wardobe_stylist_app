@@ -1,7 +1,7 @@
 import React from "react";
 
-const LayoutConfig = () => {
+const EditTab = () => {
 	return <div>LayoutConfig</div>;
 };
 
-export default LayoutConfig;
+export default EditTab;
