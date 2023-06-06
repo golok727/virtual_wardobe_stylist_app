@@ -1,6 +1,6 @@
 import { proxy } from "valtio";
 
-export type TextureBlendMode = "MULTIPLY" | "ADD" | "SUBTRACT" | "SCREEN";
+export type TextureBlendMode = "NORMAL" | "MULTIPLY" | "ADD" | "SUBTRACT";
 
 interface AppState {
 	color: string;
@@ -20,7 +20,7 @@ const state = proxy<AppState>({
 	isFullTexture: true,
 	logoDecal: "./radha-krsna.png",
 	fullDecal: "./pattern.jpg",
-	textureBlending: "MULTIPLY",
+	textureBlending: "NORMAL",
 	// logoDecal: "./threejs.png",
 	// fullDecal: "./threejs.png",
 	// logoDecal: "./fairy_ins.jpg",

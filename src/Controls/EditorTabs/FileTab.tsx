@@ -1,11 +1,12 @@
 import { DesignIcon, StickerIcon } from "@/assets";
 import FilePicker from "@/components/FilePicker";
-import state from "@/store";
+import state, { TextureBlendMode } from "@/store";
 import React from "react";
 import { useSnapshot } from "valtio";
 import { motion } from "framer-motion";
 import CheckBox from "@/components/CheckBox";
 import { textureBlendModes } from "@/config/constants";
+import SectionWrapper from "@/components/SectionWrapper";
 const FileTab = () => {
 	const snap = useSnapshot(state);
 	return (
@@ -52,12 +53,19 @@ const FileTab = () => {
 									Blending
 								</label>
 								<select
+									className="appearance-none font-bold text-white rounded-md px-2 py-1 bg-[rgb(235,44,108)] hover:scale-105 transition-all cursor-pointer"
 									name="blend-modes"
 									id="blend-modes"
-									onChange={(e) => console.log(e.target.value)}
+									onChange={(e) =>
+										(state.textureBlending = e.target.value as TextureBlendMode)
+									}
 								>
 									{textureBlendModes.map((blendMode) => (
-										<option value={blendMode.type} key={blendMode.name}>
+										<option
+											className="text-sm bg-gray-700"
+											value={blendMode.type}
+											key={blendMode.name}
+										>
 											{blendMode.name}
 										</option>
 									))}
@@ -69,10 +77,6 @@ const FileTab = () => {
 			</section>
 		</div>
 	);
-};
-
-const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
-	return <div className="bg-black bg-opacity-10 p-2 rounded">{children}</div>;
 };
 
 export default FileTab;

@@ -1,3 +1,4 @@
+import { TextureBlendMode } from "@/store";
 import {
 	FileIcon,
 	ColorWheelIcon,
@@ -26,9 +27,9 @@ export const EditorClothTypeTabList = [
 	{ name: "womans-pajama", icon: WomansPajamaIcon },
 ];
 
-export const textureBlendModes: { name: string; type: string }[] = [
+export const textureBlendModes: { name: string; type: TextureBlendMode }[] = [
+	{ name: "Normal", type: "NORMAL" },
 	{ name: "Multiply", type: "MULTIPLY" },
 	{ name: "Add", type: "ADD" },
 	{ name: "Subtract", type: "SUBTRACT" },
-	{ name: "Screen", type: "SCREEN" },
 ];

@@ -2,9 +2,17 @@ import React from "react";
 import { easing } from "maath";
 import { Decal, useGLTF, useTexture } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import state from "@/store";
+import state, { TextureBlendMode } from "@/store";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
+const blending: { [key in TextureBlendMode]: THREE.Blending } = {
+	MULTIPLY: THREE.MultiplyBlending,
+	NORMAL: THREE.NormalBlending,
+	ADD: THREE.AdditiveBlending,
+	SUBTRACT: THREE.SubtractiveBlending,
+};
+
 const Shirt = () => {
 	const snap = useSnapshot(state);
 	const { nodes, materials } = useGLTF("/shirt_baked.glb") as any;
@@ -31,7 +39,7 @@ const Shirt = () => {
 					<Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1}>
 						<meshStandardMaterial
 							map={fullTexture}
-							blending={THREE.MultiplyBlending}
+							blending={blending[snap.textureBlending]}
 							transparent={true}
 							roughness={0.7}
 						/>
