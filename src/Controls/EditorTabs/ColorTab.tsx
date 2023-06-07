@@ -14,7 +14,7 @@ const ColorTab: React.FC = () => {
 	const snap = useSnapshot(state);
 	return (
 		<div className={`grid ${showPallets ? "grid-cols-2" : "grid-cols-1"}`}>
-			<section className="grid gap-2 px-2">
+			<section className="flex flex-col gap-2 px-2">
 				<div>
 					<p className="font-bold text-xs">Choose Shirt Color:</p>
 					<ColorPicker
@@ -29,7 +29,7 @@ const ColorTab: React.FC = () => {
 					/>
 				</div>
 
-				<div className="flex gap-2">
+				<div className="flex justify-start gap-2">
 					<CheckBoxIcon
 						image={ColorPalleteIcon}
 						checked={showPallets}
@@ -76,7 +76,7 @@ const ColorTab: React.FC = () => {
 			</section>
 			{showPallets && (
 				<section className="border-l-[1px] border-l-neutral-400 px-2 grid gap-2">
-					<div className="grid gap-2 lg:grid-cols-6 grid-cols-5 bg-black bg-opacity-50 rounded-md py-2 px-3">
+					<div className="grid gap-2 lg:grid-cols-6 grid-cols-5 bg-white bg-opacity-50 rounded-md py-2 px-3 shadow-md border-[1px] border-neutral-300">
 						<ColorPalettes
 							onChoose={(color) => {
 								state.color = color;
@@ -84,14 +84,14 @@ const ColorTab: React.FC = () => {
 						/>
 					</div>
 					{snap.recentSwatches && snap.recentSwatches.length > 0 && (
-						<div className="grid gap-2 lg:grid-cols-6 grid-cols-5 bg-black bg-opacity-60 rounded-md py-2 px-3">
+						<div className="grid gap-2 lg:grid-cols-6 grid-cols-5 bg-white bg-opacity-60 rounded-md py-2 px-3 shadow-md border-[1px] border-neutral-200">
 							{snap.recentSwatches.map((palette, idx) => (
 								<motion.div
 									key={idx}
 									initial={{ scale: 0 }}
 									transition={{ delay: 0.1 * idx }}
 									animate={{ scale: 1 }}
-									className="w-5 aspect-square rounded-full cursor-pointer"
+									className="w-5 aspect-square rounded-full cursor-pointer border-[1px] border-neutral-700"
 									style={{ backgroundColor: palette }}
 								></motion.div>
 							))}

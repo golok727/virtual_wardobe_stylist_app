@@ -29,6 +29,7 @@ const EditorTabs = () => {
 		>
 			{EditorTabsList.map((tab) => (
 				<Tab
+					current={tab.name === currentEditorTab}
 					key={tab.name}
 					name={tab.name}
 					icon={tab.icon}

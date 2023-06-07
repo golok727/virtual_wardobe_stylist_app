@@ -14,11 +14,11 @@ const CheckBoxIcon: React.FC<CheckBoxIconProps> = ({
 	onChange,
 }) => {
 	return (
-		<label className="w-fit">
+		<label className="flex aspect-square user-select-none">
 			<div
-				className={`bg-green-500 w-[2.5em] aspect-square ${
-					checked ? "bg-opacity-20" : "bg-opacity-0"
-				}  hover:bg-opacity-40 cursor-pointer border-[1px] border-blue-300 rounded-full p-2 shadow-sm transition-all`}
+				className={`bg-white border-[1px] w-[2.5em] h-[2.5em] aspect-square hover:border-red-300 ${
+					checked ? "border-red-500" : "border-transparent"
+				}  hover:bg-opacity-40 cursor-pointer border-[1px] border-blue-300 rounded-full p-2 shadow-md transition-all`}
 			>
 				<Image className="w-full h-full object-contain" src={image} alt="" />
 			</div>

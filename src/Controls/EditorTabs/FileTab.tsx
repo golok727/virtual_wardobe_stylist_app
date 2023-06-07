@@ -29,7 +29,7 @@ const FileTab = () => {
 	return (
 		<div>
 			<section className="grid gap-2">
-				<div className="flex gap-2 2">
+				<div className="flex gap-2 border-b-[1px] border-b-neutral-300 py-2">
 					<CheckBoxIcon
 						image={StickerIcon}
 						id="apply-print"
