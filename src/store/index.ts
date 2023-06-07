@@ -11,8 +11,13 @@ interface AppState {
 	logoDecal: string;
 	fullDecal: string;
 	textureBlending: TextureBlendMode;
+	logoScale: number;
+	controls: boolean;
+	recentSwatches: string[];
 }
 const state = proxy<AppState>({
+	recentSwatches: [],
+	controls: false,
 	color: "#F09042",
 	transparentBackground: true,
 	backgroundColor: "#FFFFFF",
@@ -21,6 +26,7 @@ const state = proxy<AppState>({
 	logoDecal: "./radha-krsna.png",
 	fullDecal: "./pattern.jpg",
 	textureBlending: "NORMAL",
+	logoScale: 1.0,
 	// logoDecal: "./threejs.png",
 	// fullDecal: "./threejs.png",
 	// logoDecal: "./fairy_ins.jpg",

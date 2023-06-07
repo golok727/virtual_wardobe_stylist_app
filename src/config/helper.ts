@@ -13,3 +13,16 @@ export const getContrastingColor = (color: string) => {
 	// Return black or white depending on the brightness
 	return brightness > 128 ? "black" : "white";
 };
+
+export const fileReader = (
+	file: File,
+	onLoad: (fileReader: FileReader, ev: ProgressEvent<FileReader>) => void
+) => {
+	const reader = new FileReader();
+
+	reader.onload = (ev) => {
+		onLoad(reader, ev);
+	};
+
+	reader.readAsDataURL(file);
+};

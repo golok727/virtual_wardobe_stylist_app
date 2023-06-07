@@ -1,30 +1,56 @@
 import { DesignIcon, StickerIcon } from "@/assets";
-import FilePicker from "@/components/FilePicker";
-import state, { TextureBlendMode } from "@/store";
-import React from "react";
-import { useSnapshot } from "valtio";
-import { motion } from "framer-motion";
 import CheckBox from "@/components/CheckBox";
-import { textureBlendModes } from "@/config/constants";
+import CheckBoxIcon from "@/components/CheckBoxIcon";
+import FilePicker from "@/components/FilePicker";
 import SectionWrapper from "@/components/SectionWrapper";
+import { textureBlendModes } from "@/config/constants";
+import { fileReader } from "@/config/helper";
+import state, { TextureBlendMode } from "@/store";
+import { ChangeEvent } from "react";
+import { useSnapshot } from "valtio";
+
 const FileTab = () => {
 	const snap = useSnapshot(state);
+
+	const handleLogoFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files[0]) {
+			const file = e.target.files[0];
+			const _id = e.target.id;
+			if (file) {
+				fileReader(file, (reader) => {
+					if (_id === "logo-file") state.logoDecal = reader.result as string;
+					else if (_id === "pattern-file")
+						state.fullDecal = reader.result as string;
+				});
+			}
+		}
+	};
+
 	return (
 		<div>
 			<section className="grid gap-2">
-				<SectionWrapper>
-					<FilePicker
-						text={"Choose a print"}
-						onChange={() => {}}
-						id="print-file"
-						icon={StickerIcon}
-					/>
-
-					<CheckBox
-						text="Apply Print"
+				<div className="flex gap-2 2">
+					<CheckBoxIcon
+						image={StickerIcon}
 						id="apply-print"
 						onChange={(ev) => (state.isLogoTexture = ev.target.checked)}
 						checked={snap.isLogoTexture}
+					/>
+
+					<CheckBoxIcon
+						image={DesignIcon}
+						id="apply-print"
+						onChange={(ev) => (state.isFullTexture = ev.target.checked)}
+						checked={snap.isFullTexture}
+					/>
+				</div>
+
+				<SectionWrapper>
+					<FilePicker
+						text={"Choose a print"}
+						onChange={handleLogoFileChange}
+						id="logo-file"
+						icon={StickerIcon}
 					/>
 				</SectionWrapper>
 
@@ -32,7 +58,7 @@ const FileTab = () => {
 				<SectionWrapper>
 					<FilePicker
 						text={"Choose a texture"}
-						onChange={() => {}}
+						onChange={handleLogoFileChange}
 						id="pattern-file"
 						icon={DesignIcon}
 					/>
@@ -56,6 +82,7 @@ const FileTab = () => {
 									className="appearance-none font-bold text-white rounded-md px-2 py-1 bg-[rgb(235,44,108)] hover:scale-105 transition-all cursor-pointer"
 									name="blend-modes"
 									id="blend-modes"
+									value={snap.textureBlending}
 									onChange={(e) =>
 										(state.textureBlending = e.target.value as TextureBlendMode)
 									}

@@ -35,9 +35,7 @@ const Controls = () => {
 				<div className="grid gap-2 text-sm">
 					<Link href={"/wardobe"}>
 						<Button
-							variant="outline"
 							style={{
-								background: "none",
 								color: getContrastingColor(snap.backgroundColor),
 							}}
 						>

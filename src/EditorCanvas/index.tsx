@@ -1,6 +1,6 @@
 "use client";
 
-import { Center, Environment } from "@react-three/drei";
+import { Center, Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import BackDrop from "./BackDrop";
 import CameraRig from "./CameraRig";
@@ -26,7 +26,9 @@ const EditorCanvas = () => {
 				<ambientLight intensity={0.45} />
 
 				<Environment preset="city" />
-				{/* <OrbitControls enablePan={true} enableRotate={false} /> */}
+				{snap.controls && (
+					<OrbitControls enablePan={false} enableRotate={false} />
+				)}
 				<CameraRig>
 					<BackDrop />
 					<Center>

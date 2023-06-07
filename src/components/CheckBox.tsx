@@ -6,7 +6,7 @@ interface CheckBoxProps {
 	id: string;
 	checked: boolean;
 }
-const CheckBox: React.FC<CheckBoxProps> = ({ text, checked, onChange }) => {
+const CheckBox: React.FC<CheckBoxProps> = ({ text, checked, onChange, id }) => {
 	return (
 		<div className="flex gap-2 items-center my-2">
 			<label className="text-xs font-bold" htmlFor="apply-print">
@@ -15,7 +15,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ text, checked, onChange }) => {
 			<input
 				type="checkbox"
 				name=""
-				id="apply-print"
+				id={id}
 				onChange={onChange}
 				checked={checked}
 			/>

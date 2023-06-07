@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { easing } from "maath";
 import { Decal, useGLTF, useTexture } from "@react-three/drei";
 import { useSnapshot } from "valtio";
@@ -16,9 +16,13 @@ const blending: { [key in TextureBlendMode]: THREE.Blending } = {
 const Shirt = () => {
 	const snap = useSnapshot(state);
 	const { nodes, materials } = useGLTF("/shirt_baked.glb") as any;
+	const logoDecalRef = useRef<THREE.Mesh | null>(null);
 
 	useFrame((_, delta) => {
 		easing.dampC(materials.lambert1.color, state.color, 0.25, delta);
+		if (logoDecalRef.current) {
+			easing.damp3(logoDecalRef.current.scale, state.logoScale, 0.2, delta);
+		}
 	});
 
 	const fullTexture = useTexture(snap.fullDecal);
@@ -35,6 +39,20 @@ const Shirt = () => {
 				material-roughness={0.9}
 				dispose={null}
 			>
+				{snap.isLogoTexture && (
+					<Decal
+						ref={logoDecalRef}
+						map={printTexture}
+						scale={0.2}
+						position={[0, 0.04, 0.1]}
+						rotation={[0, 0, 0]}
+						map-anisotropy={16}
+						blendEquation={102}
+						depthTest={false}
+						depthWrite={true}
+					/>
+				)}
+
 				{snap.isFullTexture && (
 					<Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1}>
 						<meshStandardMaterial
@@ -56,19 +74,6 @@ const Shirt = () => {
 						scale={1}
 					/>
 				)} */}
-
-				{snap.isLogoTexture && (
-					<Decal
-						map={printTexture}
-						scale={0.2}
-						position={[0, 0.04, 0.1]}
-						rotation={[0, 0, 0]}
-						map-anisotropy={16}
-						blendEquation={102}
-						depthTest={false}
-						depthWrite={true}
-					/>
-				)}
 			</mesh>
 		</group>
 	);

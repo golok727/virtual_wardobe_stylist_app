@@ -27,7 +27,7 @@ const FilePicker: React.FC<FilePickerProps> = ({
 				{text}
 			</label>
 			<input
-				accept="images/*"
+				accept="image/*"
 				onChange={onChange}
 				type="file"
 				name=""
