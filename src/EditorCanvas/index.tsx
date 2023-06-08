@@ -14,9 +14,12 @@ const EditorCanvas = () => {
 		<div className="absolute inset-0 w-full h-full">
 			<Canvas
 				shadows
+				onClick={() => (state.currentEditorTab = null)}
 				camera={{ position: [0, 0, 2], fov: 25 }}
 				gl={{ preserveDrawingBuffer: true }}
-				className="w-full max-w-full h-full transition-all ease-in"
+				className={`w-full max-w-full h-full transition-all ease-in ${
+					snap.controls && "cursor-zoom-in"
+				}`}
 			>
 				{/* Add background image if the transparentBackgroundProperty is false */}
 				{!snap.transparentBackground && (

@@ -2,18 +2,18 @@ import { EditorTabsList } from "@/config/constants";
 import { motion } from "framer-motion";
 import Modal from "./Modal";
 import Tab from "./Tab";
-import { useState } from "react";
 import { EditorTabNames } from "@/config/constants";
+import { useSnapshot } from "valtio";
+import state from "@/store";
 const EditorTabs = () => {
-	const [currentEditorTab, setCurrentEditorTab] = useState<
-		keyof typeof EditorTabNames | null
-	>(null);
+	const snap = useSnapshot(state);
+
 	const handleTabClick = (name: string) => {
-		if (name === currentEditorTab) {
-			setCurrentEditorTab(null);
+		if (name === snap.currentEditorTab) {
+			state.currentEditorTab = null;
 			return;
 		}
-		setCurrentEditorTab(name as keyof typeof EditorTabNames);
+		state.currentEditorTab = name as keyof typeof EditorTabNames;
 	};
 	return (
 		<motion.div
@@ -25,11 +25,11 @@ const EditorTabs = () => {
 				duration: 0.6,
 			}}
 			animate={{ x: 0, scale: 1 }}
-			className="shadow-xl flex flex-col gap-2 rounded-md bg-slate-100 bg-opacity-75 backdrop-blur-md  p-2"
+			className="shadow-xl flex flex-col gap-2 rounded-md bg-white bg-opacity-90 backdrop-blur-md  p-2"
 		>
 			{EditorTabsList.map((tab) => (
 				<Tab
-					current={tab.name === currentEditorTab}
+					current={tab.name === snap.currentEditorTab}
 					key={tab.name}
 					name={tab.name}
 					icon={tab.icon}
@@ -37,7 +37,9 @@ const EditorTabs = () => {
 				/>
 			))}
 
-			{currentEditorTab !== null && <Modal modalFor={currentEditorTab} />}
+			{snap.currentEditorTab !== null && (
+				<Modal modalFor={snap.currentEditorTab} />
+			)}
 		</motion.div>
 	);
 };

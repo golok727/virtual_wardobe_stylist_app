@@ -59,7 +59,13 @@
   .custom-color-input::-webkit-color-swatch {
     @apply rounded-full;
   }
+
+  /* Range Start */
+
+  /* Range End  */
 }
+
+/* Others */
 @keyframes fadeIn {
   from {
     opacity: 0;

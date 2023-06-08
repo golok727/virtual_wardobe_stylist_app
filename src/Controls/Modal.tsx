@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({ modalFor }) => {
 				duration: 0.3,
 			}}
 			animate={{ scale: 1, opacity: 1, x: 0 }}
-			className="absolute left-full top-0 ml-2 bg-white bg-opacity-80 min-h-full px-2 py-3 w-max border-[1px] border-neutral-200 rounded-md shadow-xl transition-all "
+			className="absolute left-full top-0 ml-2 bg-white bg-opacity-90 min-h-full px-2 py-3 w-max border-[1px] border-neutral-200 rounded-md shadow-xl"
 		>
 			{generateModalContent(modalFor)}
 		</motion.div>

@@ -22,6 +22,12 @@ const Shirt = () => {
 		easing.dampC(materials.lambert1.color, state.color, 0.25, delta);
 		if (logoDecalRef.current) {
 			easing.damp3(logoDecalRef.current.scale, state.logoScale, 0.2, delta);
+			easing.damp3(
+				logoDecalRef.current.position,
+				[state.shirtPos.x, state.shirtPos.y, state.shirtPos.z],
+				0.2,
+				delta
+			);
 		}
 	});
 

@@ -22,7 +22,7 @@ const Tab: React.FC<TabProps> = ({
 				current ? "border-red-300 shadow-md" : "border-transparent"
 			}`}
 		>
-			<div onClick={() => handleClick(name)} className="cursor-pointer w-10">
+			<div onClick={() => handleClick(name)} className="cursor-pointer w-9">
 				<img
 					src={icon.src}
 					className="object-contain w-full h-full"

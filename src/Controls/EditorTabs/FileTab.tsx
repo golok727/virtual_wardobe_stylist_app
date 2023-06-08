@@ -63,17 +63,10 @@ const FileTab = () => {
 						icon={DesignIcon}
 					/>
 
-					<CheckBox
-						text="Apply Texture"
-						id="apply-print"
-						onChange={(ev) => (state.isFullTexture = ev.target.checked)}
-						checked={snap.isFullTexture}
-					/>
-
 					{/* BlendModes */}
 
 					{snap.isFullTexture && (
-						<SectionWrapper>
+						<SectionWrapper customStyles="mt-2">
 							<div className="grid gap-2">
 								<label className="text-xs font-bold" htmlFor="blend-modes">
 									Blending

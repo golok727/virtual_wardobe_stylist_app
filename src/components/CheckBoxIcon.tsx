@@ -14,7 +14,7 @@ const CheckBoxIcon: React.FC<CheckBoxIconProps> = ({
 	onChange,
 }) => {
 	return (
-		<label className="flex aspect-square user-select-none">
+		<label className="flex user-select-none">
 			<div
 				className={`bg-white border-[1px] w-[2.5em] h-[2.5em] aspect-square hover:border-red-300 ${
 					checked ? "border-red-500" : "border-transparent"

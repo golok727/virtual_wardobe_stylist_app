@@ -1,3 +1,4 @@
+import { EditorTabNames } from "@/config/constants";
 import { proxy } from "valtio";
 
 export type TextureBlendMode = "NORMAL" | "MULTIPLY" | "ADD" | "SUBTRACT";
@@ -14,15 +15,33 @@ interface AppState {
 	logoScale: number;
 	controls: boolean;
 	recentSwatches: string[];
+	currentEditorTab: keyof typeof EditorTabNames | null;
+	shirtPos: {
+		x: number;
+		y: number;
+		z: number;
+	};
 }
 const state = proxy<AppState>({
+	// App state
 	recentSwatches: [],
 	controls: false,
-	color: "#F09042",
+	currentEditorTab: null,
+
+	shirtPos: {
+		x: 0,
+		y: 0.04,
+		z: 0.1,
+	},
+
+	// background
 	transparentBackground: true,
 	backgroundColor: "#FFFFFF",
+
+	// Texture
+	color: "#F09042",
 	isLogoTexture: true,
-	isFullTexture: true,
+	isFullTexture: false,
 	logoDecal: "./radha-krsna.png",
 	fullDecal: "./pattern.jpg",
 	textureBlending: "NORMAL",

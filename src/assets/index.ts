@@ -10,7 +10,14 @@ import DesignIcon from "./icons-design.png";
 import ColorPalleteIcon from "./icons-color-pallete.png";
 import TransparentIcon from "./icons-transparent.png";
 import ZoomControlIcon from "./icons-zoom.png";
+import IconUp from "./icon-up.png";
+import IconDown from "./icon-down.png";
+import IconLeft from "./icon-left.png";
+import IconRight from "./icon-right.png";
+import IconMove from "./icon-move.png";
 
+import IconAdd from "./icon-add.png";
+import IconMinus from "./icon-minus.png";
 export {
 	ColorPalleteIcon,
 	TransparentIcon,
@@ -24,4 +31,11 @@ export {
 	StickerIcon,
 	DesignIcon,
 	ZoomControlIcon,
+	IconUp,
+	IconDown,
+	IconLeft,
+	IconRight,
+	IconMove,
+	IconAdd,
+	IconMinus,
 };
