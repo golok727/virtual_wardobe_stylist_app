@@ -21,7 +21,8 @@ import IconMinus from "./icon-minus.png";
 import IconBack from "./icons-back.png";
 import IconSave from "./icons-save.png";
 import IconDownload from "./icons-download.png";
-
+import IconExit from "./icon-exit.png";
+import IconCreate from "./icons-create.png";
 export {
 	ColorPalleteIcon,
 	TransparentIcon,
@@ -46,4 +47,6 @@ export {
 	IconBack,
 	IconSave,
 	IconDownload,
+	IconExit,
+	IconCreate,
 };

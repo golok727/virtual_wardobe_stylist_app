@@ -10,9 +10,11 @@ import Link from "next/link";
 import IconButton from "@/components/IconButton";
 import { IconBack, IconDownload, IconSave } from "@/assets";
 import { uploadToFirebase } from "@/firebase/upload";
+import { useAuthContext } from "@/context/AuthContext";
+import { User } from "firebase/auth";
 const Controls = () => {
 	const snap = useSnapshot(state);
-
+	const { authUser } = useAuthContext();
 	const handleImageUpload = async () => {
 		try {
 			state.isSaving = true;
@@ -20,7 +22,8 @@ const Controls = () => {
 			const dataUrl = await canvasToDataUrl();
 			await uploadToFirebase(
 				dataUrl,
-				`images/shirt-${Math.floor(Math.random() * 1000)}-${Date.now()}`
+				`images/shirt-${Math.floor(Math.random() * 1000)}-${Date.now()}`,
+				authUser as User
 			);
 			state.isSaving = false;
 		} catch (err) {}

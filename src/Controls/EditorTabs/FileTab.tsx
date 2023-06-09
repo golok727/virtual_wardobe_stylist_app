@@ -18,9 +18,14 @@ const FileTab = () => {
 			const _id = e.target.id;
 			if (file) {
 				fileReader(file, (reader) => {
-					if (_id === "logo-file") state.logoDecal = reader.result as string;
-					else if (_id === "pattern-file")
+					if (_id === "logo-file") {
+						state.logoDecal = reader.result as string;
+						state.isLogoTexture = true;
+					} else if (_id === "pattern-file") {
 						state.fullDecal = reader.result as string;
+
+						state.isFullTexture = true;
+					}
 				});
 			}
 		}
