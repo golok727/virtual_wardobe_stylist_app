@@ -16,11 +16,15 @@ const CheckBoxIcon: React.FC<CheckBoxIconProps> = ({
 	return (
 		<label className="flex user-select-none">
 			<div
-				className={`bg-white border-[1px] w-[2.5em] h-[2.5em] aspect-square hover:border-red-300 ${
+				className={`bg-white border-[1px] w-[2.5em] h-[2.5em] aspect-square hover:border-red-300 user-select-none ${
 					checked ? "border-red-500" : "border-transparent"
 				}  hover:bg-opacity-40 cursor-pointer border-[1px] border-blue-300 rounded-full p-2 shadow-md transition-all`}
 			>
-				<Image className="w-full h-full object-contain" src={image} alt="" />
+				<Image
+					className="w-full h-full object-contain user-select-none"
+					src={image}
+					alt=""
+				/>
 			</div>
 			<input
 				className="appearance-none"

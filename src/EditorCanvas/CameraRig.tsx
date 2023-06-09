@@ -1,11 +1,14 @@
+import AppState from "@/store";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import React, { ReactNode, useRef } from "react";
 import { Group } from "three";
+import { useSnapshot } from "valtio";
 
 easing;
 const CameraRig = ({ children }: { children: ReactNode }) => {
 	const groupRef = useRef<Group | null>(null);
+	const snap = useSnapshot(AppState);
 
 	useFrame((state, delta) => {
 		if (groupRef.current) {
@@ -13,7 +16,11 @@ const CameraRig = ({ children }: { children: ReactNode }) => {
 
 			easing.dampE(
 				group.rotation,
-				[state.pointer.y / 10, -state.pointer.x / 5, 0],
+				[
+					snap.isSaving ? 0 : state.pointer.y / 10,
+					snap.isSaving ? 0 : -state.pointer.x / 5,
+					0,
+				],
 				0.25,
 				delta
 			);

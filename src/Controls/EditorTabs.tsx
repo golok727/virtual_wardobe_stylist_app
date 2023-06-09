@@ -25,7 +25,7 @@ const EditorTabs = () => {
 				duration: 0.6,
 			}}
 			animate={{ x: 0, scale: 1 }}
-			className="shadow-xl flex flex-col gap-2 rounded-md bg-white bg-opacity-90 backdrop-blur-md  p-2"
+			className="flex flex-col gap-2"
 		>
 			{EditorTabsList.map((tab) => (
 				<Tab

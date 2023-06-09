@@ -4,12 +4,27 @@ import React from "react";
 import { useSnapshot } from "valtio";
 import EditorTabs from "./EditorTabs";
 import ClothTypeTabs from "./ClothTypeTabs";
-import Button from "@/components/Button";
-import { getContrastingColor } from "@/config/helper";
+import { canvasToDataUrl, downloadCanvasToImage } from "@/config/helper";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import IconButton from "@/components/IconButton";
+import { IconBack, IconDownload, IconSave } from "@/assets";
+import { uploadToFirebase } from "@/firebase/upload";
 const Controls = () => {
 	const snap = useSnapshot(state);
+
+	const handleImageUpload = async () => {
+		try {
+			state.isSaving = true;
+
+			const dataUrl = await canvasToDataUrl();
+			await uploadToFirebase(
+				dataUrl,
+				`images/shirt-${Math.floor(Math.random() * 1000)}-${Date.now()}`
+			);
+			state.isSaving = false;
+		} catch (err) {}
+	};
 	return (
 		<>
 			<div className="absolute top-1/2 left-2">
@@ -27,22 +42,23 @@ const Controls = () => {
 					stiffness: 30,
 					restDelta: 0.001,
 					duration: 0.6,
-					delay: 0.9,
 				}}
 				animate={{ x: 0, scale: 1 }}
 				className="absolute top-3 right-3"
 			>
 				<div className="grid gap-2 text-sm">
 					<Link href={"/wardobe"}>
-						<Button
-							style={{
-								color: getContrastingColor(snap.backgroundColor),
-							}}
-						>
-							Go Back
-						</Button>
+						<IconButton icon={IconBack} />
 					</Link>
-					<Button>Save</Button>
+
+					<IconButton icon={IconDownload} onClick={() => handleImageUpload()} />
+
+					<IconButton
+						icon={IconSave}
+						onClick={() => {
+							downloadCanvasToImage();
+						}}
+					/>
 				</div>
 			</motion.div>
 		</>

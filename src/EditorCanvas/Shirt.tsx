@@ -24,7 +24,7 @@ const Shirt = () => {
 			easing.damp3(logoDecalRef.current.scale, state.logoScale, 0.2, delta);
 			easing.damp3(
 				logoDecalRef.current.position,
-				[state.shirtPos.x, state.shirtPos.y, state.shirtPos.z],
+				[state.shirtPos.x, state.shirtPos.y, 0],
 				0.2,
 				delta
 			);
@@ -50,10 +50,9 @@ const Shirt = () => {
 						ref={logoDecalRef}
 						map={printTexture}
 						scale={0.2}
-						position={[0, 0.04, 0.1]}
+						position={[0, 0.04, 0.2]}
 						rotation={[0, 0, 0]}
 						map-anisotropy={16}
-						blendEquation={102}
 						depthTest={false}
 						depthWrite={true}
 					/>

@@ -4,6 +4,7 @@ import {
 	IconLeft,
 	IconMinus,
 	IconMove,
+	IconReset,
 	IconRight,
 	IconUp,
 	ZoomControlIcon,
@@ -11,10 +12,9 @@ import {
 import CheckBoxIcon from "@/components/CheckBoxIcon";
 import IconButton from "@/components/IconButton";
 import state from "@/store";
-import { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { useSnapshot } from "valtio";
 import { motion } from "framer-motion";
-import { PlusIcon } from "@heroicons/react/24/outline";
 import SectionWrapper from "@/components/SectionWrapper";
 const EditTab = () => {
 	const snap = useSnapshot(state);
@@ -63,27 +63,49 @@ const EditTab = () => {
 					animate={{ scale: 1, x: 0 }}
 					className={`grid gap-4`}
 				>
-					<PositionControls onDownBtn={() => console.log("down")} />
+					<PositionControls
+						onUpBtn={() => {
+							const newY = Math.min(0.12, state.shirtPos.y + 0.01);
+							state.shirtPos.y = newY;
+						}}
+						onDownBtn={() => {
+							const newY = Math.max(-0.12, state.shirtPos.y - 0.01);
+							state.shirtPos.y = newY;
+						}}
+						onLeftBtn={() => {
+							const newX = Math.max(-0.09, state.shirtPos.x - 0.01);
+							state.shirtPos.x = newX;
+						}}
+						onRightBtn={() => {
+							const newX = Math.min(0.09, state.shirtPos.x + 0.01);
 
+							state.shirtPos.x = newX;
+						}}
+					/>
+
+					{/* Zoom ,Reset */}
 					<div className="flex gap-2 justify-center">
 						<IconButton
 							icon={IconAdd}
-							onClick={(e) => {
+							onClick={() => {
 								const newScale = Math.min(snap.logoScale * 10 + 1, 10);
-								console.log(newScale);
-								console.log(snap.logoScale);
-
 								state.logoScale = newScale / 10;
 							}}
 						/>
 						<IconButton
 							icon={IconMinus}
-							onClick={(e) => {
+							onClick={() => {
 								const newScale = Math.max(snap.logoScale * 10 - 1, 2);
-								console.log(newScale);
-								console.log(snap.logoScale);
 
 								state.logoScale = newScale / 10;
+							}}
+						/>
+
+						<IconButton
+							icon={IconReset}
+							onClick={() => {
+								state.shirtPos = { ...state.shirtPos, x: 0, y: 0.04 };
+								state.logoScale = 1;
 							}}
 						/>
 					</div>
@@ -92,11 +114,12 @@ const EditTab = () => {
 		</div>
 	);
 };
+
 interface PositionControlsProps {
-	onDownBtn?: MouseEventHandler<HTMLButtonElement>;
-	onLeftBtn?: MouseEventHandler<HTMLButtonElement>;
-	onUpBtn?: MouseEventHandler<HTMLButtonElement>;
-	onRightBtn?: MouseEventHandler<HTMLButtonElement>;
+	onDownBtn: () => void;
+	onLeftBtn: () => void;
+	onUpBtn: () => void;
+	onRightBtn: () => void;
 }
 
 const PositionControls: React.FC<PositionControlsProps> = ({
@@ -105,15 +128,48 @@ const PositionControls: React.FC<PositionControlsProps> = ({
 	onRightBtn,
 	onUpBtn,
 }) => {
+	const [intervalId, setIntervalId] = useState<number | null>(null);
+
+	const handleMouseDown = (callback: () => void) => {
+		callback();
+
+		const id = window.setInterval(callback, 100);
+		setIntervalId(id);
+	};
+
+	const handleMouseUp = () => {
+		if (intervalId) {
+			clearInterval(intervalId);
+			setIntervalId(null);
+		}
+	};
+
 	return (
 		<div className="bg-white grid rounded-full shadow-md border-[1px] border-neutral-200">
 			<div className="grid gap-2 p-2  place-items-center text-xs grid-cols-2 ">
 				<div className="col-span-2">
-					<IconButton icon={IconUp} customStyles="w-7" onClick={onUpBtn} />
+					<IconButton
+						icon={IconUp}
+						customStyles="w-7"
+						// onClick={onUpBtn}
+						onMouseDown={() => handleMouseDown(onUpBtn)}
+						onMouseUp={handleMouseUp}
+						onMouseLeave={handleMouseUp}
+						onTouchStart={handleMouseUp}
+						onTouchEnd={handleMouseUp}
+					/>
 				</div>
 
 				<div>
-					<IconButton icon={IconLeft} customStyles="w-7" onClick={onLeftBtn} />
+					<IconButton
+						icon={IconLeft}
+						customStyles="w-7"
+						onMouseDown={() => handleMouseDown(onLeftBtn)}
+						onMouseUp={handleMouseUp}
+						onMouseLeave={handleMouseUp}
+						onTouchStart={handleMouseUp}
+						onTouchEnd={handleMouseUp}
+					/>
 				</div>
 
 				<div>
@@ -121,11 +177,24 @@ const PositionControls: React.FC<PositionControlsProps> = ({
 						icon={IconRight}
 						customStyles="w-7"
 						onClick={onRightBtn}
+						onMouseDown={() => handleMouseDown(onRightBtn)}
+						onMouseUp={handleMouseUp}
+						onMouseLeave={handleMouseUp}
+						onTouchStart={handleMouseUp}
+						onTouchEnd={handleMouseUp}
 					/>
 				</div>
 
 				<div className="col-span-2">
-					<IconButton icon={IconDown} customStyles="w-7" onClick={onDownBtn} />
+					<IconButton
+						icon={IconDown}
+						customStyles="w-7"
+						onMouseDown={() => handleMouseDown(onDownBtn)}
+						onMouseUp={handleMouseUp}
+						onMouseLeave={handleMouseUp}
+						onTouchStart={handleMouseUp}
+						onTouchEnd={handleMouseUp}
+					/>
 				</div>
 			</div>
 		</div>

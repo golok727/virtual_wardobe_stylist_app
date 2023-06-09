@@ -18,7 +18,7 @@ const Tab: React.FC<TabProps> = ({
 	return (
 		<motion.div
 			whileHover={{ scale: 1.05 }}
-			className={`border-[1px]  p-1 rounded-full hover:border-red-500  transition-all  ${
+			className={`border-[1px] border-red-200  p-1 rounded-full user-select-none hover:border-red-500  transition-all bg-white ${
 				current ? "border-red-300 shadow-md" : "border-transparent"
 			}`}
 		>

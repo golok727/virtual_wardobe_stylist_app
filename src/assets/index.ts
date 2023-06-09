@@ -15,9 +15,13 @@ import IconDown from "./icon-down.png";
 import IconLeft from "./icon-left.png";
 import IconRight from "./icon-right.png";
 import IconMove from "./icon-move.png";
-
+import IconReset from "./icon-reset.png";
 import IconAdd from "./icon-add.png";
 import IconMinus from "./icon-minus.png";
+import IconBack from "./icons-back.png";
+import IconSave from "./icons-save.png";
+import IconDownload from "./icons-download.png";
+
 export {
 	ColorPalleteIcon,
 	TransparentIcon,
@@ -38,4 +42,8 @@ export {
 	IconMove,
 	IconAdd,
 	IconMinus,
+	IconReset,
+	IconBack,
+	IconSave,
+	IconDownload,
 };

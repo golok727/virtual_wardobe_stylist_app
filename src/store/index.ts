@@ -21,13 +21,14 @@ interface AppState {
 		y: number;
 		z: number;
 	};
+	isSaving: boolean;
 }
 const state = proxy<AppState>({
 	// App state
 	recentSwatches: [],
 	controls: false,
 	currentEditorTab: null,
-
+	isSaving: false,
 	shirtPos: {
 		x: 0,
 		y: 0.04,
