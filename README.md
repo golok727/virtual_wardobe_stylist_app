@@ -1,3 +1,7 @@
+# Virtual Wardobe Stylist 
+
+A virtual wardobe stylist with `react` and `three js`. It uses firebase as its storeage to store images. 
+
 ```bash
 npm run dev
 # or
